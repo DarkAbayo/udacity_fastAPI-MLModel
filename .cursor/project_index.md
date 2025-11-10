@@ -57,26 +57,49 @@ This is a machine learning project for deploying a Census income prediction mode
 
 ## Project Requirements
 
+For complete requirements and rubric, see `project-task-description.md`.
+
 ### Model Development
-- [ ] Complete `train_model()` function
+- [ ] Complete `train_model()` function (train, save, load model and encoders)
 - [ ] Complete `inference()` function
-- [ ] Write unit tests for at least 3 model functions
+- [ ] Write training script that uses implemented functions
+- [ ] Write unit tests for at least 3 model functions (test return types)
 - [ ] Write function for performance on data slices
+  - Output to `slice_output.txt`
+  - Compute metrics for each unique categorical value
 - [ ] Create model card using template
+  - Address every section
+  - Include metrics and performance
+  - Complete sentences
 
 ### API Development
-- [ ] Implement GET endpoint (welcome message)
-- [ ] Implement POST endpoint (model inference)
-- [ ] Create Pydantic model for POST body
-- [ ] Write 3 unit tests (1 GET, 2 POST)
+- [ ] Implement GET endpoint (welcome message on root)
+- [ ] Implement POST endpoint (model inference on different path)
+- [ ] Create Pydantic model for POST body with example
+- [ ] Use type hints for automatic FastAPI documentation
+- [ ] Handle column names with hyphens (Pydantic Field aliases)
+- [ ] Write 3 unit tests:
+  - 1 GET (test status code AND content)
+  - 2 POST (one for each possible prediction)
+- [ ] Run `python sanitycheck.py` and fix issues
+- [ ] Screenshot: `example.png` (API docs with example)
+
+### Git & CI/CD
+- [ ] Set up GitHub repository
+- [ ] Configure GitHub Actions:
+  - Run pytest and flake8 on every push to main/master
+  - Use Python 3.13
+  - Both must pass without errors
+  - Minimum 6 tests by completion
+- [ ] Screenshot: `continuous_integration.png`
 
 ### Deployment
-- [ ] Set up GitHub repository
-- [ ] Configure GitHub Actions (pytest + flake8)
-- [ ] Deploy to Render
-- [ ] Configure environment variables on Render
-- [ ] Set up DVC for data versioning (if needed)
-- [ ] Write script to test live API
+- [ ] Deploy to Render (auto-deploy from GitHub)
+- [ ] Configure environment variables on Render (if needed)
+- [ ] Screenshot: `continuous_deployment.png`
+- [ ] Screenshot: `live_get.png` (browser showing GET)
+- [ ] Write script to POST to live API using requests
+- [ ] Screenshot: `live_post.png` (POST result)
 
 ### Documentation
 - [ ] Create German documentation in `/docs` folder
@@ -103,6 +126,7 @@ project/
 ├── setup.py
 ├── sanitycheck.py
 ├── model_card_template.md
+├── project-task-description.md  # Detailed requirements and rubric
 ├── .gitignore
 └── README.md
 ```
@@ -125,11 +149,28 @@ project/
 - **Format**: Markdown (.md) files
 - **Note**: While cursorrules specify English for documentation, the `/docs` folder uses German to provide detailed beginner-friendly explanations with necessary background knowledge for learning purposes.
 
+## Deliverables Checklist
+
+### Required Files
+- `slice_output.txt` - Model performance on data slices
+- `continuous_integration.png` - Successful CI run
+- `example.png` - API documentation with example
+- `continuous_deployment.png` - CD enabled on Render
+- `live_get.png` - Browser showing GET endpoint
+- `live_post.png` - POST request result
+
+### Required Code
+- Training script using implemented functions
+- Model card (complete, using template)
+- API with GET and POST endpoints
+- Minimum 6 tests total (3+ model, 3 API)
+
 ## Notes
-- Python version: 3.13
+- Python version: 3.13 (must match in dev and CI/CD)
 - Column names contain hyphens - use Pydantic Field aliases
 - Model files (*.pkl, *.joblib) should be committed to GitHub for production
 - Use DVC for data versioning (optional, depending on project needs)
 - CI/CD should run pytest and flake8 on Python 3.13
 - Environment setup: pip and venv (recommended approach)
+- Run `python sanitycheck.py` before final submission
 
