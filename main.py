@@ -44,6 +44,29 @@ CATEGORICAL_FEATURES = [
 
 
 class CencusData(BaseModel):
+    """
+    Pydantic model for Census income prediction API request.
+
+    This model validates the input data for the POST /inference endpoint.
+    Field aliases are used to handle column names with hyphens (e.g.,
+    "education-num" maps to education_num in Python).
+
+    Attributes:
+        age: Age of the individual
+        workclass: Type of employment
+        fnlgt: Final weight (demographic weighting)
+        education: Highest level of education
+        education_num: Numeric representation of education
+        marital_status: Marital status
+        occupation: Type of occupation
+        relationship: Relationship status
+        race: Race
+        sex: Gender
+        capital_gain: Capital gains
+        capital_loss: Capital losses
+        hours_per_week: Hours worked per week
+        native_country: Country of origin
+    """
     age: int = Field(..., example=39)
     workclass: str = Field(..., alias="workclass", example="State-gov")
     fnlgt: int = Field(..., example=77516)

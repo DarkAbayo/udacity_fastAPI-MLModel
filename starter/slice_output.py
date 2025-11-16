@@ -1,4 +1,15 @@
-# Script to compute model performance on data slices.
+"""
+Script to compute model performance on data slices.
+
+This script:
+1. Loads the trained model and test data
+2. Computes model performance metrics for each unique value
+   of a categorical feature (e.g., education level)
+3. Writes the slice metrics to slice_output.txt
+
+The slice analysis helps identify performance disparities across
+different demographic groups or feature values.
+"""
 
 import sys
 from pathlib import Path

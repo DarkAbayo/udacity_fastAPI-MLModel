@@ -10,6 +10,21 @@ WARN_COLOR = '\033[93m'
 
 
 def run_sanity_check(test_dir):
+    """
+    Perform sanity check on test cases for GET and POST endpoints.
+
+    This function analyzes test cases to ensure they meet the project
+    requirements:
+    - GET endpoint tests must check both status code and response content
+    - POST endpoint tests must check both status code and response content
+    - There must be at least two POST tests (one for each prediction outcome)
+
+    Args:
+        test_dir: Directory containing test files (not currently used)
+
+    The function prompts the user to enter the path to the test file
+    and then analyzes it for compliance with the rubric requirements.
+    """
     # assert path.isdir(test_dir), FAIL_COLOR+f"No direcotry named {test_dir}
     # found in {os.getcwd()}"
     print('This script will perform a sanity test to ensure your code meets '

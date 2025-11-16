@@ -57,18 +57,32 @@ X_test, y_test, _, _ = process_data(
 
 
 def test_train_model():
-    # Test if train_model() returns a model
-    model = train_model(X_train, y_train)  # Processed data!
+    """
+    Test that train_model() returns a trained RandomForestClassifier.
+
+    Verifies that:
+    - Function returns a model object
+    - Model is of correct type (RandomForestClassifier)
+    - Model has been trained (has .predict method)
+    """
+    model = train_model(X_train, y_train)
 
     # Check type
     assert model is not None
-
     assert isinstance(model, RandomForestClassifier)
     # Check if model is trained (has .predict method)
     assert hasattr(model, 'predict')
 
 
 def test_inference():
+    """
+    Test that inference() returns correct predictions.
+
+    Verifies that:
+    - Function returns numpy array
+    - Predictions have correct shape (match input)
+    - Predictions are integers (0 or 1)
+    """
     # Train the model
     model = train_model(X_train, y_train)
 
@@ -82,6 +96,13 @@ def test_inference():
 
 
 def test_compute_model_metrics():
+    """
+    Test that compute_model_metrics() returns valid metrics.
+
+    Verifies that:
+    - Function returns three float values (precision, recall, fbeta)
+    - All metrics are between 0 and 1 (valid range)
+    """
     # Train the model
     model = train_model(X_train, y_train)
 

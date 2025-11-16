@@ -1,4 +1,14 @@
-# Script to train machine learning model.
+"""
+Script to train machine learning model.
+
+This script:
+1. Loads and cleans the census.csv data
+2. Splits data into training and test sets
+3. Processes data using one-hot encoding and label binarization
+4. Trains a Random Forest Classifier
+5. Saves the trained model, encoder, and label binarizer
+6. Evaluates the model and prints performance metrics
+"""
 
 import sys
 from pathlib import Path
