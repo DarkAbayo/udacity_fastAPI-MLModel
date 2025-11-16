@@ -9,12 +9,19 @@ Tests include:
 import sys
 from pathlib import Path
 
+from fastapi.testclient import TestClient
+
 # Add project root to Python path
+# This must be done after standard library imports but before local imports
+# because 'main' module is not in the default Python path when running tests.
+# We need to modify sys.path before importing from 'main'
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from fastapi.testclient import TestClient
-from main import app
+# Local import must come after sys.path modification
+# noqa: E402 is used because flake8 expects all imports at the top,
+# but we need sys.path.insert() to run first for this import to work
+from main import app  # noqa: E402
 
 client = TestClient(app)
 

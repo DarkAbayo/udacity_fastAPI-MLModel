@@ -3,18 +3,26 @@
 import sys
 from pathlib import Path
 
+import joblib
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
 # Add project root to Python path so imports work
+# This must be done after standard library imports but before local imports
+# because the local 'starter' module is not in the default Python path.
+# We need to modify sys.path before importing from 'starter.ml.*'
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from sklearn.model_selection import train_test_split
-from starter.ml.data import process_data
-from starter.ml.model import train_model
-from starter.ml.data import clean_data
-from starter.ml.model import compute_model_metrics, inference
-
-import pandas as pd
-import joblib
+# Local imports must come after sys.path modification
+# noqa: E402 is used because flake8 expects all imports at the top,
+# but we need sys.path.insert() to run first for these imports to work
+from starter.ml.data import clean_data, process_data  # noqa: E402
+from starter.ml.model import (  # noqa: E402
+    compute_model_metrics,
+    inference,
+    train_model
+)
 
 # Load the data
 data_path = project_root / "data" / "census.csv"
