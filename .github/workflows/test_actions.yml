@@ -1,4 +1,4 @@
-name: Pylint
+name: PyTest and Flake8
 
 on: 
   push:
