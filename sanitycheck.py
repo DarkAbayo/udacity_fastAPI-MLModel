@@ -26,7 +26,8 @@ def run_sanity_check(test_dir):
     module = importlib.import_module(module_name)
 
     test_function_names = list(filter(
-        lambda x: inspect.isfunction(getattr(module, x)) and not x.startswith('__'),
+        lambda x: (inspect.isfunction(getattr(module, x)) and
+                   not x.startswith('__')),
         dir(module)
     ))
 
@@ -50,9 +51,9 @@ def run_sanity_check(test_dir):
         print(FAIL_COLOR + f"[{WARNING_COUNT}]")
         WARNING_COUNT += 1
         print(FAIL_COLOR + "No test cases were detected for the GET() method.")
-        print(FAIL_COLOR + "\nPlease make sure you have a test case for the GET "
-              "method.\nThis MUST test both the status code as well as the "
-              "contents of the request object.\n")
+        print(FAIL_COLOR + "\nPlease make sure you have a test case for the "
+              "GET method.\nThis MUST test both the status code as well as "
+              "the contents of the request object.\n")
         SANITY_TEST_PASSING = False
 
     else:
@@ -60,7 +61,8 @@ def run_sanity_check(test_dir):
             source = inspect.getsource(getattr(module, func))
             if source.find('.status_code') != -1:
                 TEST_FOR_GET_METHOD_RESPONSE_CODE = True
-            if (source.find('.json') != -1) or (source.find('json.loads') != -1):
+            if ((source.find('.json') != -1) or
+                    (source.find('json.loads') != -1)):
                 TEST_FOR_GET_METHOD_RESPONSE_BODY = True
 
         if not TEST_FOR_GET_METHOD_RESPONSE_CODE:
@@ -83,7 +85,8 @@ def run_sanity_check(test_dir):
     if not test_functions_for_post:
         print(FAIL_COLOR + f"[{WARNING_COUNT}]")
         WARNING_COUNT += 1
-        print(FAIL_COLOR + "No test cases were detected for the POST() method.")
+        msg = "No test cases were detected for the POST() method."
+        print(FAIL_COLOR + msg)
         print(FAIL_COLOR + "Please make sure you have TWO test cases for the "
               "POST() method.\nOne test case for EACH of the possible "
               "inferences (results/outputs) of the ML model.\n")
@@ -103,7 +106,8 @@ def run_sanity_check(test_dir):
             source = inspect.getsource(getattr(module, func))
             if source.find('.status_code') != -1:
                 TEST_FOR_POST_METHOD_RESPONSE_CODE = True
-            if (source.find('.json') != -1) or (source.find('json.loads') != -1):
+            if ((source.find('.json') != -1) or
+                    (source.find('json.loads') != -1)):
                 TEST_FOR_POST_METHOD_RESPONSE_BODY = True
                 COUNT_POST_METHOD_TEST_FOR_INFERENCE_RESULT += 1
 
@@ -115,8 +119,9 @@ def run_sanity_check(test_dir):
         if not TEST_FOR_POST_METHOD_RESPONSE_BODY:
             print(FAIL_COLOR + f"[{WARNING_COUNT}]")
             WARNING_COUNT += 1
-            print(FAIL_COLOR + "One or more of your test cases for POST() do "
-                  "not seem to be testing the contents of the response.\n")
+            msg = ("One or more of your test cases for POST() do not seem "
+                   "to be testing the contents of the response.\n")
+            print(FAIL_COLOR + msg)
 
         if (len(test_functions_for_post) >= 2 and
                 COUNT_POST_METHOD_TEST_FOR_INFERENCE_RESULT < 2):

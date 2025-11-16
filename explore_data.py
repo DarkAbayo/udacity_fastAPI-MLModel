@@ -42,8 +42,9 @@ def check_messy_data(df):
             print(f"  ⚠️  Column '{original_col}' has whitespace")
 
         if col.startswith(" ") or col.endswith(" "):
-            issues.append(f"Column '{original_col}' has leading/trailing whitespace")
-            print(f"  ⚠️  Column '{original_col}' has leading/trailing whitespace")
+            msg = f"Column '{original_col}' has leading/trailing whitespace"
+            issues.append(msg)
+            print(f"  ⚠️  {msg}")
 
     # Check string values for leading/trailing whitespace
     print("\nChecking string values for whitespace...")
@@ -56,7 +57,8 @@ def check_messy_data(df):
         for idx, value in sample.items():
             if pd.notna(value) and str(value) != str(value).strip():
                 if not whitespace_found:
-                    print("  ⚠️  Found whitespace in values (showing first occurrence):")
+                    msg = "  ⚠️  Found whitespace in values (showing first):"
+                    print(msg)
                     whitespace_found = True
                 print(f"      Column '{col}', Row {idx}: '{value}'")
                 issues.append(f"Value in column '{col}' has whitespace")
@@ -127,7 +129,10 @@ def main():
             df,
             title="Census Income Dataset - Profiling Report",
             dataset={
-                "description": "Census income prediction dataset from UCI ML Repository",
+                "description": (
+                    "Census income prediction dataset from "
+                    "UCI ML Repository"
+                ),
                 "url": "https://archive.ics.uci.edu/ml/datasets/census+income"
             },
             variables={

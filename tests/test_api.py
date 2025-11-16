@@ -70,7 +70,8 @@ def test_post_endpoint_prediction_high():
     # Test response content (required by sanity check)
     data = response.json()
     assert "prediction" in data
-    # Note: Actual prediction depends on model, but should be either ">50K" or "<=50K"
+    # Note: Actual prediction depends on model, but should be either
+    # ">50K" or "<=50K"
     assert data["prediction"] in [">50K", "<=50K"]
 
 
@@ -108,5 +109,6 @@ def test_post_endpoint_prediction_low():
     # Test response content (required by sanity check)
     data = response.json()
     assert "prediction" in data
-    # Note: Actual prediction depends on model, but should be either ">50K" or "<=50K"
+    # Note: Actual prediction depends on model, but should be either
+    # ">50K" or "<=50K"
     assert data["prediction"] in [">50K", "<=50K"]

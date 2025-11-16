@@ -23,7 +23,8 @@ data = pd.read_csv(data_path)
 # clean the data
 data = clean_data(data)
 
-# Optional enhancement, use K-fold cross validation instead of a train-test split.
+# Optional enhancement, use K-fold cross validation instead of
+# a train-test split.
 train, test = train_test_split(data, test_size=0.20, random_state=42)
 
 cat_features = [
@@ -43,7 +44,8 @@ X_train, y_train, encoder, lb = process_data(
 
 # Proces the test data with the process_data function.
 X_test, y_test, _, _ = process_data(
-    test, categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=lb
+    test, categorical_features=cat_features, label="salary",
+    training=False, encoder=encoder, lb=lb
 )
 
 # Train the model
@@ -55,7 +57,8 @@ joblib.dump(encoder, project_root / "encoder.pkl")
 joblib.dump(lb, project_root / "lb.pkl")
 
 # Compute the model metrics
-precision, recall, fbeta = compute_model_metrics(y_test, inference(model, X_test))
+preds = inference(model, X_test)
+precision, recall, fbeta = compute_model_metrics(y_test, preds)
 
 print(f"Precision: {precision}")
 print(f"Recall: {recall}")
