@@ -61,3 +61,48 @@ def inference(model, X):
     """
     X_pred = model.predict(X)
     return X_pred
+
+
+def compute_slice_metrics(df, feature, y, preds):
+    """
+    Compute model performance metrics for each unique value of a feature.
+
+    This function calculates precision, recall, and F1 score for each slice
+    of data where a categorical feature has a specific value.
+
+    Inputs
+    ------
+    df : pd.DataFrame
+        Original dataframe with the feature column.
+    feature : str
+        Name of the categorical feature to slice on.
+    y : np.ndarray
+        True labels (binarized).
+    preds : np.ndarray
+        Predicted labels (binarized).
+    Returns
+    -------
+    slice_metrics : dict
+        Dictionary with feature values as keys and metrics as values.
+        Format: {value: {'precision': float, 'recall': float, 'fbeta': float}}
+    """
+    slice_metrics = {}
+    unique_values = df[feature].unique()
+
+    for value in unique_values:
+        # Get indices where feature equals this value
+        mask = df[feature] == value
+        if mask.sum() > 0:  # Only compute if there are samples
+            y_slice = y[mask]
+            preds_slice = preds[mask]
+            precision, recall, fbeta = compute_model_metrics(
+                y_slice, preds_slice
+            )
+            slice_metrics[value] = {
+                'precision': precision,
+                'recall': recall,
+                'fbeta': fbeta,
+                'n_samples': mask.sum()
+            }
+
+    return slice_metrics

@@ -1,0 +1,99 @@
+Model Performance on Slices of 'education'
+============================================================
+
+Feature Value: 10th
+  Number of Samples: 183
+  Precision: 0.4000
+  Recall: 0.1667
+  F1-Score: 0.2353
+
+Feature Value: 11th
+  Number of Samples: 225
+  Precision: 1.0000
+  Recall: 0.2727
+  F1-Score: 0.4286
+
+Feature Value: 12th
+  Number of Samples: 98
+  Precision: 1.0000
+  Recall: 0.4000
+  F1-Score: 0.5714
+
+Feature Value: 1st-4th
+  Number of Samples: 23
+  Precision: 1.0000
+  Recall: 1.0000
+  F1-Score: 1.0000
+
+Feature Value: 5th-6th
+  Number of Samples: 62
+  Precision: 1.0000
+  Recall: 0.5000
+  F1-Score: 0.6667
+
+Feature Value: 7th-8th
+  Number of Samples: 141
+  Precision: 0.0000
+  Recall: 0.0000
+  F1-Score: 0.0000
+
+Feature Value: 9th
+  Number of Samples: 115
+  Precision: 1.0000
+  Recall: 0.3333
+  F1-Score: 0.5000
+
+Feature Value: Assoc-acdm
+  Number of Samples: 198
+  Precision: 0.7000
+  Recall: 0.5957
+  F1-Score: 0.6437
+
+Feature Value: Assoc-voc
+  Number of Samples: 273
+  Precision: 0.6471
+  Recall: 0.5238
+  F1-Score: 0.5789
+
+Feature Value: Bachelors
+  Number of Samples: 1053
+  Precision: 0.7523
+  Recall: 0.7289
+  F1-Score: 0.7404
+
+Feature Value: Doctorate
+  Number of Samples: 77
+  Precision: 0.8644
+  Recall: 0.8947
+  F1-Score: 0.8793
+
+Feature Value: HS-grad
+  Number of Samples: 2085
+  Precision: 0.6594
+  Recall: 0.4377
+  F1-Score: 0.5261
+
+Feature Value: Masters
+  Number of Samples: 369
+  Precision: 0.8271
+  Recall: 0.8551
+  F1-Score: 0.8409
+
+Feature Value: Preschool
+  Number of Samples: 10
+  Precision: 1.0000
+  Recall: 1.0000
+  F1-Score: 1.0000
+
+Feature Value: Prof-school
+  Number of Samples: 116
+  Precision: 0.8182
+  Recall: 0.9643
+  F1-Score: 0.8852
+
+Feature Value: Some-college
+  Number of Samples: 1485
+  Precision: 0.6857
+  Recall: 0.5199
+  F1-Score: 0.5914
+
