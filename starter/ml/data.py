@@ -1,23 +1,25 @@
 import numpy as np
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 
+
 def clean_data(df):
     """
     Clean the dataframe by removing whitespace from column names and values.
-    
+
     This function should be used both for training and inference to ensure
     consistent data cleaning.
-    
+
     Args:
         df: pd.DataFrame to clean
-    
+
     Returns:
         df: pd.DataFrame with cleaned column names and string values
     """
-    df.columns = df.columns.str.strip()                       # remove whitespace from column names
+    df.columns = df.columns.str.strip()  # remove whitespace from column names
     for col in df.select_dtypes(include=['object']).columns:
-        df[col] = df[col].str.strip()                         # remove whitespace from string values
+        df[col] = df[col].str.strip()  # remove whitespace from string values
     return df
+
 
 def process_data(
     X, categorical_features=[], label=None, training=True, encoder=None, lb=None

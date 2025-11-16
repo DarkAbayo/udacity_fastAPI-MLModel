@@ -14,7 +14,6 @@ from starter.ml.data import clean_data
 from starter.ml.model import compute_model_metrics, inference
 
 import pandas as pd
-import numpy as np
 import joblib
 
 # Load the data
@@ -61,4 +60,3 @@ precision, recall, fbeta = compute_model_metrics(y_test, inference(model, X_test
 print(f"Precision: {precision}")
 print(f"Recall: {recall}")
 print(f"Fbeta: {fbeta}")
-

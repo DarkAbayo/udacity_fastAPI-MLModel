@@ -6,7 +6,6 @@ Tests include:
 - POST endpoint: Model inference (both prediction outcomes)
 """
 
-import pytest
 import sys
 from pathlib import Path
 
@@ -23,14 +22,14 @@ client = TestClient(app)
 def test_get_endpoint():
     """
     Test GET endpoint returns welcome message.
-    
+
     Must test both status code and response content for sanity check.
     """
     response = client.get("/")
-    
+
     # Test status code (required by sanity check)
     assert response.status_code == 200
-    
+
     # Test response content (required by sanity check)
     data = response.json()
     assert "message" in data
@@ -40,7 +39,7 @@ def test_get_endpoint():
 def test_post_endpoint_prediction_high():
     """
     Test POST endpoint with data leading to >50K prediction.
-    
+
     Must test both status code and response content for sanity check.
     Uses data that typically leads to high income prediction.
     """
@@ -62,12 +61,12 @@ def test_post_endpoint_prediction_high():
         "hours-per-week": 50,
         "native-country": "United-States"
     }
-    
+
     response = client.post("/inference", json=test_data)
-    
+
     # Test status code (required by sanity check)
     assert response.status_code == 200
-    
+
     # Test response content (required by sanity check)
     data = response.json()
     assert "prediction" in data
@@ -78,7 +77,7 @@ def test_post_endpoint_prediction_high():
 def test_post_endpoint_prediction_low():
     """
     Test POST endpoint with data leading to <=50K prediction.
-    
+
     Must test both status code and response content for sanity check.
     Uses data that typically leads to low income prediction.
     """
@@ -100,12 +99,12 @@ def test_post_endpoint_prediction_low():
         "hours-per-week": 40,
         "native-country": "United-States"
     }
-    
+
     response = client.post("/inference", json=test_data)
-    
+
     # Test status code (required by sanity check)
     assert response.status_code == 200
-    
+
     # Test response content (required by sanity check)
     data = response.json()
     assert "prediction" in data

@@ -1,4 +1,3 @@
-import pytest
 import sys
 from pathlib import Path
 
@@ -41,48 +40,51 @@ X_train, y_train, encoder, lb = process_data(
 )
 
 X_test, y_test, _, _ = process_data(
-    test, categorical_features=cat_features, label="salary", 
+    test, categorical_features=cat_features, label="salary",
     training=False, encoder=encoder, lb=lb
 )
+
 
 def test_train_model():
     # Test if train_model() returns a model
     model = train_model(X_train, y_train)  # Processed data!
-    
+
     # Check type
     assert model is not None
-    
+
     assert isinstance(model, RandomForestClassifier)
     # Check if model is trained (has .predict method)
     assert hasattr(model, 'predict')
 
+
 def test_inference():
     # Train the model
     model = train_model(X_train, y_train)
-    
+
     # Test inference
     predictions = inference(model, X_test)
-    
+
     # Check type and shape
     assert isinstance(predictions, np.ndarray)
     assert len(predictions) == len(X_test)
     assert predictions.dtype in [np.int64, np.int32, np.int8]
 
+
 def test_compute_model_metrics():
     # Train the model
     model = train_model(X_train, y_train)
-    
+
     # Make predictions
     predictions = inference(model, X_test)
-    
+
     # Compute metrics
     precision, recall, fbeta = compute_model_metrics(y_test, predictions)
-    
+
     # Check type and value range
     assert isinstance(precision, (float, np.floating))
     assert isinstance(recall, (float, np.floating))
     assert isinstance(fbeta, (float, np.floating))
-    
+
     # Values should be between 0 and 1
     assert 0 <= precision <= 1
     assert 0 <= recall <= 1

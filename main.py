@@ -15,7 +15,6 @@ This module implements a RESTful API with:
 # from starter.ml.data import process_data
 
 from fastapi import FastAPI
-from typing import Union
 from pydantic import BaseModel, Field
 import joblib
 import pandas as pd
@@ -43,6 +42,7 @@ CATEGORICAL_FEATURES = [
     "native-country",
 ]
 
+
 class CencusData(BaseModel):
     age: int = Field(..., example=39)
     workclass: str = Field(..., alias="workclass", example="State-gov")
@@ -59,6 +59,7 @@ class CencusData(BaseModel):
     hours_per_week: int = Field(..., alias="hours-per-week", example=40)
     native_country: str = Field(..., alias="native-country", example="United-States")
 
+
 @app.get("/")
 def welcome() -> dict:
     """
@@ -66,21 +67,23 @@ def welcome() -> dict:
     """
     return {"message": "Welcome to the Census Income Prediction API"}
 
+
 @app.post("/inference")
 def predict_income(data: CencusData) -> dict:
     """
     Predict income category based on census data.
-    #     
-    #     Args:
-    #         data: CensusData model containing all required features
-    #     
-    #     Returns:
-    #         dict: Prediction result with income category
-    #             Example: {"prediction": ">50K"} or {"prediction": "<=50K"}
+
+    Args:
+        data: CensusData model containing all required features
+
+    Returns:
+        dict: Prediction result with income category
+            Example: {"prediction": ">50K"} or {"prediction": "<=50K"}
     """
 
     # Convert Pydantic model to DataFrame
-    data_dict = data.model_dump(by_alias=True) # get a dictionary with the alias names
+    # get a dictionary with the alias names
+    data_dict = data.model_dump(by_alias=True)
     df = pd.DataFrame([data_dict])
 
     # Clean the data
@@ -88,10 +91,10 @@ def predict_income(data: CencusData) -> dict:
 
     # Process the data using process_data() function
     X_processed, _, _, _ = process_data(
-        df, 
-        categorical_features=CATEGORICAL_FEATURES, 
-        encoder=encoder, 
-        lb=lb, 
+        df,
+        categorical_features=CATEGORICAL_FEATURES,
+        encoder=encoder,
+        lb=lb,
         training=False
     )
 
@@ -102,6 +105,3 @@ def predict_income(data: CencusData) -> dict:
     prediction_label = lb.inverse_transform(prediction)[0]
 
     return {"prediction": prediction_label}
-
-
-

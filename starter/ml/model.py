@@ -58,6 +58,5 @@ def inference(model, X):
     preds : np.ndarray
         Predictions from the model.
     """
-    
     X_pred = model.predict(X)
     return X_pred
