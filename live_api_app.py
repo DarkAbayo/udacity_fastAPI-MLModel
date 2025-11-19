@@ -76,7 +76,11 @@ def main():
     if len(sys.argv) > 1:
         api_url = sys.argv[1]
     else:
-        api_url = input("Enter the full API URL (e.g., https://your-api.onrender.com/inference): ").strip()
+        prompt = (
+            "Enter the full API URL "
+            "(e.g., https://your-api.onrender.com/inference): "
+        )
+        api_url = input(prompt).strip()
 
     # Ensure URL is not empty
     if not api_url:
@@ -108,4 +112,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
