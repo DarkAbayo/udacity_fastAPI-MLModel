@@ -2,6 +2,9 @@
 
 This project implements a machine learning model for Census income prediction and deploys it as a RESTful API using FastAPI on Render.
 
+Hosted on Github: https://github.com/DarkAbayo/udacity_fastAPI-MLModel
+AI was used as a supporting tool in the process of creating this project.
+
 ## Project Structure
 
 ```
@@ -14,7 +17,6 @@ project/
 ├── data/
 │   └── census.csv          # Census dataset (needs cleaning)
 ├── main.py                 # FastAPI application (to be implemented)
-├── docs/                   # German documentation (detailed, beginner-friendly)
 ├── requirements.txt        # Python dependencies
 ├── setup.py                # Package setup configuration
 ├── sanitycheck.py          # Test validation script
@@ -35,28 +37,28 @@ pip install -r requirements.txt
 ## Development Tasks
 
 ### 1. Data Preparation
-- [ ] Download `census.csv` from the data folder
-- [ ] Clean the census.csv file (remove spaces using text editor)
-- [ ] Verify data can be opened in pandas
-- [ ] Set up DVC for data versioning (optional)
-- [ ] Commit cleaned data to DVC (optional)
+- [x] Download `census.csv` from the data folder
+- [x] Clean the census.csv file (remove spaces using text editor)
+- [x] Verify data can be opened in pandas
+- [x] Set up DVC for data versioning (optional)
+- [x] Commit cleaned data to DVC (optional)
 
 ### 2. Model Development
-- [ ] Complete `train_model()` function in `starter/ml/model.py`
+- [x] Complete `train_model()` function in `starter/ml/model.py`
   - Train model on clean data
   - Save model and encoders
-- [ ] Complete `inference()` function in `starter/ml/model.py`
-- [ ] Write training script (`starter/train_model.py`)
+- [x] Complete `inference()` function in `starter/ml/model.py`
+- [x] Write training script (`starter/train_model.py`)
   - Load and process data
   - Train model using implemented functions
   - Save model and encoder
-- [ ] Write unit tests for at least 3 model functions
+- [x] Write unit tests for at least 3 model functions
   - Test that functions return expected types
   - Handle stochastic nature of ML tests
-- [ ] Implement function for performance on data slices
+- [x] Implement function for performance on data slices
   - Compute metrics for each unique value of categorical features
   - Output results to `slice_output.txt`
-- [ ] Create model card using the provided template
+- [x] Create model card using the provided template
   - Address every section of the template
   - Include metrics and model performance
   - Write in complete sentences
@@ -197,20 +199,9 @@ Render is a cloud platform that offers a free tier for small projects, making it
    - **Environment**: Python 3.13
    - **Plan**: Free (for development/testing)
 
-4. **Environment Variables** (if needed):
-   - Add any required environment variables in the Render dashboard
-   - For AWS/DVC access, configure `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
-
-5. **Automatic Deployments**:
+4. **Automatic Deployments**:
    - Render automatically deploys on every push to the connected branch
    - You can enable "Auto-Deploy" in the service settings
-
-### Render vs. Heroku
-
-- **Free Tier**: Render offers a free tier that doesn't require a credit card
-- **Automatic HTTPS**: SSL certificates are automatically provisioned
-- **GitHub Integration**: Seamless integration with GitHub for CI/CD
-- **Sleep Mode**: Free tier services sleep after 15 minutes of inactivity (wakes on first request)
 
 ### Important Notes for Render Deployment
 
@@ -218,16 +209,6 @@ Render is a cloud platform that offers a free tier for small projects, making it
 - Use `$PORT` environment variable (provided by Render) for the port
 - Ensure all dependencies are listed in `requirements.txt`
 - Model files should be committed to the repository or loaded from external storage (S3, etc.)
-
-For detailed German documentation, see the `/docs` folder.
-
-## Documentation
-
-Detailed German documentation for beginners is available in the `/docs` folder. This documentation includes:
-- Background knowledge and concepts
-- Step-by-step explanations
-- Detailed implementation guides
-- Troubleshooting tips
 
 ## Dataset Information
 
