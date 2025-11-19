@@ -125,9 +125,6 @@ Browser screenshots showing the deployed API:
 #### GET Endpoint (Welcome Message)
 ![Browser Live View 1](browser_live_1.png)
 
-#### API Documentation (Swagger UI)
-![Browser Live View 2](browser_live_2.png)
-
 #### API Documentation with Examples
 Screenshot showing the API documentation with example values from the Pydantic model:
 
