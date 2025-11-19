@@ -16,6 +16,7 @@ This module implements a RESTful API with:
 
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
+from pathlib import Path
 import joblib
 import pandas as pd
 from starter.ml.model import inference
@@ -25,10 +26,14 @@ from starter.ml.data import clean_data
 # Initialize FastAPI app instance
 app = FastAPI()
 
+# Get the directory where main.py is located
+# This ensures the .pkl files are found regardless of working directory
+BASE_DIR = Path(__file__).parent
+
 # Load model, encoder, and label binarizer at startup
-model = joblib.load("model.pkl")
-encoder = joblib.load("encoder.pkl")
-lb = joblib.load("lb.pkl")
+model = joblib.load(BASE_DIR / "model.pkl")
+encoder = joblib.load(BASE_DIR / "encoder.pkl")
+lb = joblib.load(BASE_DIR / "lb.pkl")
 
 # Define categorical features (same as in train_model.py)
 CATEGORICAL_FEATURES = [
