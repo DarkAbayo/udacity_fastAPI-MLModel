@@ -62,43 +62,78 @@ pip install -r requirements.txt
   - Write in complete sentences
 
 ### 3. API Development
-- [ ] Implement GET endpoint (welcome message) in `main.py`
+- [x] Implement GET endpoint (welcome message) in `main.py`
   - Must be on root domain
-- [ ] Implement POST endpoint (model inference) in `main.py`
+- [x] Implement POST endpoint (model inference) in `main.py`
   - Use different path from GET
-- [ ] Create Pydantic model for POST body with example
+- [x] Create Pydantic model for POST body with example
   - Handle column names with hyphens using Pydantic Field aliases
   - See: https://fastapi.tiangolo.com/tutorial/schema-extra-example/
-- [ ] Use Python type hints for automatic FastAPI documentation
-- [ ] Write 3 unit tests (1 GET, 2 POST)
+- [x] Use Python type hints for automatic FastAPI documentation
+- [x] Write 3 unit tests (1 GET, 2 POST)
   - GET test: Must test both status code and response content
   - POST tests: One for each possible model prediction outcome
-- [ ] Run sanity check: `python sanitycheck.py`
+- [x] Run sanity check: `python sanitycheck.py`
   - Fix any issues reported
   - Re-run until passing
-- [ ] Take screenshot of API documentation showing example (`example.png`)
+- [x] Take screenshot of API documentation showing example (`example.png`)
 
 ### 4. Git & CI/CD Setup
-- [ ] Set up GitHub repository
-- [ ] Configure GitHub Actions
+- [x] Set up GitHub repository
+- [x] Configure GitHub Actions
   - Run `pytest` and `flake8` on every push to `main/master`
   - Use Python 3.13 (same as development)
   - Both must pass without errors
   - At least 6 tests should exist by project completion
-- [ ] Add screenshot of successful CI (`continuous_integration.png`) or link to repository
+- [x] Add screenshot of successful CI (`continuous_integration.png`) or link to repository
 
 ### 5. Deployment
-- [ ] Deploy to Render
+- [x] Deploy to Render
   - Connect GitHub repository
   - Enable automatic deployments (only if CI passes)
   - Configure build and start commands
-- [ ] Configure environment variables on Render (if needed)
-- [ ] Take screenshot showing continuous deployment enabled (`continuous_deployment.png`)
-- [ ] Take screenshot of browser showing GET endpoint (`live_get.png`)
-- [ ] Write script to test live API using `requests` module
+- [x] Configure environment variables on Render (if needed)
+- [x] Take screenshot showing continuous deployment enabled (`continuous_deployment.png`)
+- [x] Take screenshot of browser showing GET endpoint (`live_get.png`)
+- [x] Write script to test live API using `requests` module
   - Send POST request
   - Return model inference result and status code
-- [ ] Take screenshot of POST result (`live_post.png`)
+- [x] Take screenshot of POST result (`live_post.png`)
+
+## Screenshots
+
+### Continuous Integration
+GitHub Actions successfully running pytest and flake8 on every push:
+
+![Continuous Integration](continuous_Integration.png)
+
+### Continuous Deployment
+Render event page showing continuous deployment enabled:
+
+![Continuous Deployment](continuous_deployment.png)
+
+### Live API Testing
+Terminal output showing `live_api_app.py` execution:
+
+![Live API Test Script](live_get.png)
+
+### Live API in Browser
+Browser screenshots showing the deployed API:
+
+#### GET Endpoint (Welcome Message)
+![Browser Live View 1](browser_live_1.png)
+
+#### API Documentation (Swagger UI)
+![Browser Live View 2](browser_live_2.png)
+
+#### API Documentation with Examples
+Screenshot showing the API documentation with example values from the Pydantic model:
+
+![API Documentation Examples](example.png)
+
+#### POST Endpoint Test (Model Inference)
+![Browser Live View 3](browser_live_3.png)
+
 
 ## Running the Application
 
